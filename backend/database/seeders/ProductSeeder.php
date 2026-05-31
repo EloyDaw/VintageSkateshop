@@ -9,6 +9,8 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
+        Product::truncate();
+
         Product::create([
             'name' => 'SkateSurf Completo Vintage 8.0"',
             'price' => 120,
@@ -37,17 +39,17 @@ class ProductSeeder extends Seeder
             'category' => 'Completos',
             'condition' => 'Nuevo',
             'description' => 'Setup cruiser perfecto para desplazarte por la ciudad. Deck de maple, ruedas blandas 58mm para absorber vibraciones y trucks delgados. Ideal para principiantes y para moverte con comodidad.',
-            'image' => 'https://images.unsplash.com/photo-1621544402532-78c290378588?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/SkateCruiser.jpg',
             'featured' => true,
         ]);
 
         Product::create([
-            'name' => 'Set de Ruedas 52mm',
+            'name' => 'Ruedas Hykea White',
             'price' => 35,
             'category' => 'Ruedas',
             'condition' => 'Usado - Muy Bueno',
-            'description' => 'Set completo de 4 ruedas premium 52mm, dureza 101A. Perfectas para street skating con excelente agarre y velocidad. Minimo desgaste, practicamente como nuevas. Ideales para flip tricks y grinds.',
-            'image' => 'https://images.unsplash.com/photo-1686665255084-a109fbd1978a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxza2F0ZWJvYXJkJTIwd2hlZWxzJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDF8fHx8MTc2OTc3OTkzM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+            'description' => 'Set completo de 4 ruedas Hykea White premium 52mm, dureza 101A. Perfectas para street skating con excelente agarre y velocidad. Minimo desgaste, practicamente como nuevas. Ideales para flip tricks y grinds.',
+            'image' => '/HykeaWhite.jfif',
             'featured' => false,
         ]);
 
@@ -58,7 +60,7 @@ class ProductSeeder extends Seeder
             'category' => 'Ruedas',
             'condition' => 'Nuevas',
             'description' => 'Ruedas Spitfire Formula Four 54mm dureza 99A. Las mas populares del mercado con la formula de uretano mas rapida y duradera. Excelentes para street y park.',
-            'image' => 'https://images.unsplash.com/photo-1686665255084-a109fbd1978a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/Spitfire-FormulaFour.jfif',
             'featured' => true,
         ]);
 
@@ -79,7 +81,7 @@ class ProductSeeder extends Seeder
             'category' => 'Ejes',
             'condition' => 'Nuevos',
             'description' => 'Ejes Thunder Titanium edicion limitada. Construccion ligera con eje de titanio, geometria de alto rendimiento para giros precisos. Incluyen bushings de serie.',
-            'image' => 'https://images.unsplash.com/photo-1763369520559-2040f464efd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/ThunderTitanium.webp',
             'featured' => true,
         ]);
 
@@ -90,7 +92,7 @@ class ProductSeeder extends Seeder
             'category' => 'Rodamientos',
             'condition' => 'Nuevos',
             'description' => 'Juego de 8 rodamientos Bones Reds. Los mas vendidos del mundo por su relacion calidad-precio. Velocidad suave y duradera con lubricacion de alta calidad.',
-            'image' => 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/RodamientosReds.jfif',
             'featured' => true,
         ]);
 
@@ -101,7 +103,7 @@ class ProductSeeder extends Seeder
             'category' => 'Rodamientos',
             'condition' => 'Nuevos',
             'description' => 'Juego de 8 rodamientos Bones Swiss. Lo mejor de lo mejor, fabricados en Suiza con tolerancia de precision. La maxima velocidad y durabilidad para skaters exigentes.',
-            'image' => 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/RodamientosSwiss.jfif',
             'featured' => true,
         ]);
 
@@ -111,38 +113,38 @@ class ProductSeeder extends Seeder
             'category' => 'Rodamientos',
             'condition' => 'Nuevos',
             'description' => 'Juego de 8 rodamientos Bronson G3 con escudos removibles. Construccion de acero inoxidable y bolas de alta precision. Rapidos y faciles de mantener.',
-            'image' => 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/RodamientosBronson.jpg',
             'featured' => false,
         ]);
 
         Product::create([
-            'name' => 'Deck Maple 8.0"',
+            'name' => 'Tabla Flip 8.0"',
             'price' => 50,
             'category' => 'Tablas',
             'condition' => 'Nuevo',
-            'description' => 'Deck de maple canadiense de 7 capas, ancho 8.0". Shape clasico con concave medio. Perfecto para street skating y trucos tecnicos. Grip no incluido.',
-            'image' => 'https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'description' => 'Tabla Flip de maple canadiense de 7 capas, ancho 8.0". Shape clasico con concave medio. Perfecto para street skating y trucos tecnicos. Grip no incluido.',
+            'image' => '/TablaFlip.webp',
             'featured' => true,
         ]);
 
         Product::create([
-            'name' => 'Deck Maple 8.25"',
+            'name' => 'Tabla Santa Cruz 8.25"',
             'price' => 55,
             'discount_price' => 47,
             'category' => 'Tablas',
             'condition' => 'Nuevo',
-            'description' => 'Deck de maple canadiense de 7 capas, ancho 8.25". Shape moderno con concave pronunciado. Mayor superficie para aterrizajes mas estables.',
-            'image' => 'https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'description' => 'Tabla Santa Cruz de maple canadiense de 7 capas, ancho 8.25". Shape moderno con concave pronunciado. Mayor superficie para aterrizajes mas estables.',
+            'image' => '/TablaSantaCruz.jpg',
             'featured' => false,
         ]);
 
         Product::create([
-            'name' => 'Deck Profesional 8.5"',
+            'name' => 'Tabla Chocolate 8.5"',
             'price' => 65,
             'category' => 'Tablas',
             'condition' => 'Nuevo',
-            'description' => 'Deck profesional de maple canadiense 8.5". 7 capas prensadas de alta densidad. Shape de pro con nose y tail equilibrados. Ideal para vert y rampa.',
-            'image' => 'https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'description' => 'Tabla Chocolate de maple canadiense 8.5". 7 capas prensadas de alta densidad. Shape de pro con nose y tail equilibrados. Ideal para vert y rampa.',
+            'image' => '/TablasChocolate.jfif',
             'featured' => true,
         ]);
 
@@ -152,7 +154,7 @@ class ProductSeeder extends Seeder
             'category' => 'Lijas',
             'condition' => 'Nueva',
             'description' => 'Lija Jessup Grip Tape de alta calidad. La preferida por skaters de todo el mundo. Adhesion fuerte y durabilidad excepcional. Tamanio estandar para cualquier deck.',
-            'image' => 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/lija-jessup.jpg',
             'featured' => false,
         ]);
 
@@ -163,17 +165,17 @@ class ProductSeeder extends Seeder
             'category' => 'Lijas',
             'condition' => 'Nueva',
             'description' => 'Lija Mob Grip Tape con el caracteristico logo de la calavera. Textura agresiva para el maximo control. Grip superior para trucos exigentes.',
-            'image' => 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'image' => '/lija-mob-grip-stranger-things.jpg',
             'featured' => true,
         ]);
 
         Product::create([
-            'name' => 'Lija Girl Skateboards',
+            'name' => 'Lija Telaraña',
             'price' => 15,
             'category' => 'Lijas',
             'condition' => 'Nueva',
-            'description' => 'Lija Girl Skateboards edicion limitada con diseño exclusivo. Grip de alta calidad con el logo iconico de Girl. Corte preciso y facil aplicacion.',
-            'image' => 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+            'description' => 'Lija Telaraña con diseño exclusivo de tela de araña. Grip de alta calidad con agarre maximo. Corte preciso y facil aplicacion.',
+            'image' => '/Lija-Telaraña.jfif',
             'featured' => false,
         ]);
     }
