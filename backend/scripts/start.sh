@@ -1,7 +1,5 @@
 #!/bin/bash
-set -e
 
-# Crear .env desde variables de entorno de Render
 cat > /var/www/html/.env << EOF
 APP_NAME=${APP_NAME}
 APP_ENV=${APP_ENV}
@@ -25,5 +23,3 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 php artisan migrate --force
-
-/start.sh
