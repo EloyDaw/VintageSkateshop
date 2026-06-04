@@ -13,8 +13,6 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN if [ ! -f .env ]; then cp .env.example .env; fi
-
 RUN chmod -R 777 storage bootstrap/cache
 
 COPY scripts/start.sh /usr/local/bin/start-app.sh
