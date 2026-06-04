@@ -19,7 +19,7 @@ RUN if [ ! -f .env ]; then cp .env.example .env; fi
 # Generar APP_KEY de forma segura
 RUN php artisan key:generate --force --no-interaction || true
 
-# Cache de configuración (después de tener .env)
+# Cache de configuración
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
@@ -27,7 +27,7 @@ RUN php artisan view:cache
 # Permisos
 RUN chmod -R 777 storage bootstrap/cache
 
-EXPOSE $PORT
+EXPOSE 80
 
-# Comando de inicio
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=$PORT"]
+# Usar el entrypoint nativo de nginx-php-fpm
+CMD ["/start.sh"]
