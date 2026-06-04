@@ -5,25 +5,28 @@ ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
-ENV SKIP_COMPOSER 1
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # Copiar archivos del proyecto
 COPY . .
 
-# Instalar dependencias
+# Instalar dependencias de Composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Optimizaciones de Laravel
-RUN php artisan key:generate --force
+# Copiar .env.example a .env si no existe
+RUN if [ ! -f .env ]; then cp .env.example .env; fi
+
+# Generar APP_KEY de forma segura
+RUN php artisan key:generate --force --no-interaction || true
+
+# Cache de configuración (después de tener .env)
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
 
-# Permisos necesarios
+# Permisos
 RUN chmod -R 777 storage bootstrap/cache
 
-# Exponer puerto dinámico de Render
 EXPOSE $PORT
 
 # Comando de inicio
