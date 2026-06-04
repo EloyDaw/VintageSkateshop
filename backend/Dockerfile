@@ -13,11 +13,7 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN chmod -R 777 storage bootstrap/cache
-
-COPY scripts/start.sh /usr/local/bin/start-app.sh
-RUN chmod +x /usr/local/bin/start-app.sh
+RUN chmod -R 777 storage bootstrap/cache \
+    && chmod +x scripts/00-laravel-setup.sh
 
 EXPOSE 80
-
-CMD ["/usr/local/bin/start-app.sh"]
