@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('condition');
             $table->text('description');
-            $table->string('image');
+            $table->text('image');
             $table->boolean('featured')->default(false);
             $table->timestamps();
         });
