@@ -32,7 +32,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://tu-app.onrender.com',
+        target: 'https://vintageskateshop-1.onrender.com',
         changeOrigin: true,
         secure: true,
       },

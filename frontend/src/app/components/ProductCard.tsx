@@ -1,17 +1,31 @@
 import { Link } from "react-router";
-import type { Product } from "../lib/api";
 
-interface ProductCardProps {
-  product: Product;
-  loggedIn?: boolean;
+interface DisplayProduct {
+  id: number | string;
+  name: string;
+  price: number;
+  discount_price?: number | null;
+  category: string;
+  image: string;
 }
 
-export function ProductCard({ product, loggedIn }: ProductCardProps) {
-  const hasDiscount = loggedIn && product.discount_price != null;
-  const displayPrice = hasDiscount ? product.discount_price! : product.price;
-  const discountPercent = hasDiscount
-    ? Math.round((1 - product.discount_price! / product.price) * 100)
-    : 0;
+interface ProductCardProps {
+  product: DisplayProduct;
+  loggedIn?: boolean;
+  discountPct?: number;
+}
+
+export function ProductCard({ product, loggedIn, discountPct = 0 }: ProductCardProps) {
+  const memberDiscount = loggedIn && discountPct > 0 ? discountPct : 0;
+  const hasDiscount = (loggedIn && product.discount_price != null) || memberDiscount > 0;
+  const displayPrice = hasDiscount
+    ? product.discount_price
+      ? product.discount_price
+      : Math.round(product.price * (1 - memberDiscount / 100))
+    : product.price;
+  const discountPercent = product.discount_price
+    ? Math.round((1 - product.discount_price / product.price) * 100)
+    : memberDiscount;
 
   return (
     <Link to={`/product/${product.id}`} className="group h-full">
