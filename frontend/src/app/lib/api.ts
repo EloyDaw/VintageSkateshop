@@ -1,4 +1,5 @@
 const API_BASE = `${import.meta.env.VITE_API_URL || ''}/api`;
+console.log('API_BASE:', API_BASE);
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = localStorage.getItem('token');
