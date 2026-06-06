@@ -9,20 +9,21 @@ interface DisplayProduct {
   image: string;
 }
 
+export const MEMBER_DISCOUNT = 10;
+
 interface ProductCardProps {
   product: DisplayProduct;
   loggedIn?: boolean;
-  discountPct?: number;
 }
 
-export function ProductCard({ product, loggedIn, discountPct = 0 }: ProductCardProps) {
-  const memberDiscount = loggedIn && discountPct > 0 ? discountPct : 0;
-  const hasDiscount = (loggedIn && product.discount_price != null) || memberDiscount > 0;
-  const displayPrice = hasDiscount
+export function ProductCard({ product, loggedIn }: ProductCardProps) {
+  const memberDiscount = loggedIn ? MEMBER_DISCOUNT : 0;
+  const hasDiscount = memberDiscount > 0 || (loggedIn && product.discount_price != null);
+  const displayPrice = loggedIn && product.discount_price
     ? product.discount_price
-      ? product.discount_price
-      : Math.round(product.price * (1 - memberDiscount / 100))
-    : product.price;
+    : memberDiscount > 0
+      ? Math.round(product.price * (1 - memberDiscount / 100))
+      : product.price;
   const discountPercent = product.discount_price
     ? Math.round((1 - product.discount_price / product.price) * 100)
     : memberDiscount;

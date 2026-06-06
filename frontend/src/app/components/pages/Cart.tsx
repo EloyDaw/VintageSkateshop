@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { Button } from "../ui/button";
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface CartItem {
   id: string;
@@ -14,6 +15,7 @@ interface CartItem {
 }
 
 export function Cart() {
+  const { user } = useAuth();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
@@ -171,17 +173,17 @@ export function Cart() {
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>Envío</span>
-                <span>{total >= 50 ? "Gratis" : "$5.00"}</span>
+                <span>{user ? "Gratis" : total >= 50 ? "Gratis" : "$5.00"}</span>
               </div>
               <div className="border-t border-border pt-3 flex justify-between text-xl font-bold">
                 <span>Total</span>
                 <span className="text-primary">
-                  ${(total >= 50 ? total : total + 5).toFixed(2)}
+                  ${(user ? total : total >= 50 ? total : total + 5).toFixed(2)}
                 </span>
               </div>
             </div>
 
-            {total < 50 && (
+            {!user && total < 50 && (
               <p className="text-sm text-muted-foreground mb-4 p-3 bg-accent/10 rounded border border-accent/20">
                 Añade ${(50 - total).toFixed(2)} más para envío gratis
               </p>

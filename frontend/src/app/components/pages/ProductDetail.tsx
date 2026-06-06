@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import { api, type Product } from "../../lib/api";
+import { MEMBER_DISCOUNT } from "../ProductCard";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { ArrowLeft, ShoppingCart, Heart } from "lucide-react";
@@ -44,11 +45,18 @@ export function ProductDetail() {
     );
   }
 
-  const hasDiscount = !!user && product.discount_price != null;
-  const displayPrice = hasDiscount ? product.discount_price! : product.price;
-  const discountPercent = hasDiscount
+  const isMember = !!user;
+  const productHasDiscount = product.discount_price != null;
+
+  const hasDiscount = isMember;
+  const displayPrice = isMember
+    ? productHasDiscount
+      ? product.discount_price!
+      : Math.round(product.price * (1 - MEMBER_DISCOUNT / 100))
+    : product.price;
+  const discountPercent = productHasDiscount
     ? Math.round((1 - product.discount_price! / product.price) * 100)
-    : 0;
+    : MEMBER_DISCOUNT;
 
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
