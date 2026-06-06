@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { ArrowRight, Star, Truck, Shield, Lock, Percent, Gift, Zap } from "lucide-react";
 import { Button } from "../ui/button";
-import { ProductCard } from "../ProductCard";
-import { products } from "../../data/products";
+import { ProductCard, MEMBER_DISCOUNT } from "../ProductCard";
+import { api, type Product } from "../../lib/api";
 import { useAuth } from "../../contexts/AuthContext";
 import { AuthModal } from "../AuthModal";
 
-const featuredProducts = products.slice(0, 3);
-const MEMBER_DISCOUNT = 10;
+const FEATURED_COUNT = 3;
 
 interface Perk {
   id: string;
@@ -26,16 +25,16 @@ const memberPerks: Perk[] = [
     icon: <Zap className="w-6 h-6" />,
     tag: "PRECIO MIEMBRO",
     title: `${MEMBER_DISCOUNT}% de descuento en todo`,
-    description: "El descuento se aplica autom\u00e1ticamente en todos los productos al estar registrado.",
+    description: "El descuento se aplica automáticamente en todos los productos al estar registrado.",
     highlight: `-${MEMBER_DISCOUNT}%`,
     color: "#D97642",
   },
   {
     id: "2",
     icon: <Truck className="w-6 h-6" />,
-    tag: "ENV\u00cdO",
-    title: "Env\u00edo gratis incluido",
-    description: "Todos tus pedidos tienen env\u00edo gratuito sin m\u00ednimo de compra.",
+    tag: "ENVÍO",
+    title: "Envío gratis incluido",
+    description: "Todos tus pedidos tienen envío gratuito sin mínimo de compra.",
     highlight: "GRATIS",
     color: "#E5A946",
   },
@@ -44,7 +43,7 @@ const memberPerks: Perk[] = [
     icon: <Gift className="w-6 h-6" />,
     tag: "ACCESO",
     title: "Ofertas exclusivas antes que nadie",
-    description: "S\u00e9 el primero en conocer nuevas entradas, drops y liquidaciones especiales.",
+    description: "Sé el primero en conocer nuevas entradas, drops y liquidaciones especiales.",
     highlight: "VIP",
     color: "#5C4033",
   },
@@ -54,6 +53,13 @@ export function Home() {
   const { user } = useAuth();
   const isAuthenticated = !!user;
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    api.products()
+      .then((all) => setFeaturedProducts(all.slice(0, FEATURED_COUNT)))
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="flex flex-col flex-1">
@@ -80,7 +86,7 @@ export function Home() {
             </h1>
 
             <p className="text-lg mb-6 text-secondary-foreground/90 max-w-xl">
-              Descubre tablas vintage, equipos usados de calidad y ese estilo \u00fanico que solo el skate puede ofrecer.
+              Descubre tablas vintage, equipos usados de calidad y ese estilo único que solo el skate puede ofrecer.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -117,7 +123,7 @@ export function Home() {
                 <Truck className="w-8 h-8 text-accent" />
               </div>
               <h3 className="mb-2">Envio Rapido</h3>
-              <p className="text-muted-foreground">Entrega en 2-5 dias habiles a toda Espa\u00f1a</p>
+              <p className="text-muted-foreground">Entrega en 2-5 dias habiles a toda España</p>
             </div>
 
             <div className="text-center">
@@ -308,7 +314,7 @@ export function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} discountPct={isAuthenticated ? MEMBER_DISCOUNT : 0} />
+              <ProductCard key={product.id} product={product} loggedIn={isAuthenticated} />
             ))}
           </div>
         </div>
