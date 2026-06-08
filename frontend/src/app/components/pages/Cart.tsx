@@ -116,7 +116,7 @@ export function Cart() {
                 <p className="text-sm text-muted-foreground mb-2">
                   {item.category}
                 </p>
-                <p className="text-lg font-bold text-primary">${item.price}</p>
+                <p className="text-lg font-bold text-primary">{item.price}€</p>
 
                 {/* Quantity Controls */}
                 <div className="flex items-center gap-2 mt-auto">
@@ -169,23 +169,23 @@ export function Cart() {
             <div className="space-y-3 mb-6">
               <div className="flex justify-between text-muted-foreground">
                 <span>Subtotal</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{total.toFixed(2)}€</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>Envío</span>
-                <span>{user ? "Gratis" : total >= 50 ? "Gratis" : "$5.00"}</span>
+                <span>{user ? "Gratis" : total >= 50 ? "Gratis" : "5€"}</span>
               </div>
               <div className="border-t border-border pt-3 flex justify-between text-xl font-bold">
                 <span>Total</span>
                 <span className="text-primary">
-                  ${(user ? total : total >= 50 ? total : total + 5).toFixed(2)}
+                  {(user ? total : total >= 50 ? total : total + 5).toFixed(2)}€
                 </span>
               </div>
             </div>
 
             {!user && total < 50 && (
               <p className="text-sm text-muted-foreground mb-4 p-3 bg-accent/10 rounded border border-accent/20">
-                Añade ${(50 - total).toFixed(2)} más para envío gratis
+                Añade {(50 - total).toFixed(2)}€ más para envío gratis
               </p>
             )}
 

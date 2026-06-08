@@ -48,9 +48,9 @@ export function ProductCard({ product, loggedIn }: ProductCardProps) {
           <div className="flex items-center justify-between mt-auto">
             <div className="flex items-center gap-2">
               {hasDiscount && (
-                <span className="text-lg text-muted-foreground line-through">${product.price}</span>
+                <span className="text-lg text-muted-foreground line-through">{product.price}€</span>
               )}
-              <span className="text-2xl font-bold text-primary">${displayPrice}</span>
+              <span className="text-2xl font-bold text-primary">{displayPrice}€</span>
             </div>
             <span className="text-sm text-muted-foreground bg-accent/20 px-3 py-1 rounded">Ver mas</span>
           </div>

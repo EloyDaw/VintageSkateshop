@@ -104,12 +104,12 @@ export function ProductDetail() {
           <div className="mb-6">
             {hasDiscount ? (
               <div className="flex items-center gap-3">
-                <span className="text-5xl font-bold text-primary">${displayPrice}</span>
-                <span className="text-2xl text-muted-foreground line-through">${product.price}</span>
+                <span className="text-5xl font-bold text-primary">{displayPrice}€</span>
+                <span className="text-2xl text-muted-foreground line-through">{product.price}€</span>
                 <Badge className="bg-primary">-{discountPercent}%</Badge>
               </div>
             ) : (
-              <span className="text-5xl font-bold text-primary">${product.price}</span>
+              <span className="text-5xl font-bold text-primary">{product.price}€</span>
             )}
           </div>
 
@@ -137,7 +137,7 @@ export function ProductDetail() {
           </div>
 
           <div className="mt-6 p-4 bg-accent/10 rounded border border-accent/20">
-            <p className="text-sm"><strong>Envio gratis</strong> en pedidos superiores a €50</p>
+            <p className="text-sm"><strong>Envio gratis</strong> en pedidos superiores a 50€</p>
           </div>
         </div>
       </div>
